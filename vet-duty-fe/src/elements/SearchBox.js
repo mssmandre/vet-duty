@@ -3,7 +3,7 @@ import { Form, Row, Col, Button, Container } from 'react-bootstrap';
 import statesAndCities from '../utils/data/brazilcities.json';
 import speciality from '../utils/data/speciality.json';
 
-function SearchBox() {
+function SearchBox({ onSearch }) {
   const [cityName, setCityName] = useState('');
   const [selectedState, setSelectedState] = useState('');
   const [selectedSpeciality, setSelectedSpeciality] = useState('');
@@ -19,9 +19,13 @@ function SearchBox() {
     setSelectedSpeciality(e.target.value);
   };
 
+  const handleSearchSpeciality = (e) => {
+    e.preventDefault();
+  };
+
   const handleSearch = (e) => {
     e.preventDefault();
-    alert(`Pesquisando ${selectedSpeciality} em: ${cityName}, Estado: ${selectedState}`);
+    onSearch(); // Correctly calls the onSearch prop
   };
 
   return (
